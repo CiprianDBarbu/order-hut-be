@@ -1,0 +1,95 @@
+package com.cbar.orderhutbe.model;
+
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+public class Dish {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int dishId;
+
+    private String dishName;
+
+    private float price;
+
+    private String category;
+
+    private String imageUrl;
+
+    private String dishDescription;
+
+    @ManyToMany(mappedBy = "dishList")
+    private List<Order> orderList = new ArrayList<>();
+
+    public Dish() {
+    }
+
+    public Dish(int dishId, String dishName, float price, String category, String imageUrl, String dishDescription, List<Order> orderList) {
+        this.dishId = dishId;
+        this.dishName = dishName;
+        this.price = price;
+        this.category = category;
+        this.imageUrl = imageUrl;
+        this.dishDescription = dishDescription;
+        this.orderList = orderList;
+    }
+
+    public int getDishId() {
+        return dishId;
+    }
+
+    public void setDishId(int dishId) {
+        this.dishId = dishId;
+    }
+
+    public String getDishName() {
+        return dishName;
+    }
+
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getDishDescription() {
+        return dishDescription;
+    }
+
+    public void setDishDescription(String dishDescription) {
+        this.dishDescription = dishDescription;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+}

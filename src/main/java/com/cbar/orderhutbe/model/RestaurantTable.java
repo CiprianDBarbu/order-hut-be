@@ -3,7 +3,7 @@ package com.cbar.orderhutbe.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Table {
+public class RestaurantTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tableId;
@@ -12,10 +12,10 @@ public class Table {
 
     private int numberOfSeats;
 
-    public Table() {
+    public RestaurantTable() {
     }
 
-    public Table(int tableId, int servingZone, int numberOfSeats) {
+    public RestaurantTable(int tableId, int servingZone, int numberOfSeats) {
         this.tableId = tableId;
         this.servingZone = servingZone;
         this.numberOfSeats = numberOfSeats;

@@ -13,7 +13,7 @@ enum OrderStatus {
 }
 
 @Entity
-public class Order {
+public class FinalOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
@@ -38,10 +38,10 @@ public class Order {
     @JoinTable(name = "dish_order", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "dish_id"))
     private List<Dish> dishList = new ArrayList<>();
 
-    public Order() {
+    public FinalOrder() {
     }
 
-    public Order(int orderId, float totalPrice, Date orderTime, OrderStatus orderStatus, String comments, Client orderClient, Planification planification, List<Dish> dishList) {
+    public FinalOrder(int orderId, float totalPrice, Date orderTime, OrderStatus orderStatus, String comments, Client orderClient, Planification planification, List<Dish> dishList) {
         this.orderId = orderId;
         this.totalPrice = totalPrice;
         this.orderTime = orderTime;

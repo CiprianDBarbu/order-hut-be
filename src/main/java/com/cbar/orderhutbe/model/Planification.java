@@ -14,15 +14,15 @@ public class Planification {
 
     @OneToOne
     @JoinColumn(name = "table_id")
-    private Table actualTable;
+    private RestaurantTable actualRestaurantTable;
 
     public Planification() {
     }
 
-    public Planification(int planificationId, Waiter waiter, Table actualTable) {
+    public Planification(int planificationId, Waiter waiter, RestaurantTable actualRestaurantTable) {
         this.planificationId = planificationId;
         this.waiter = waiter;
-        this.actualTable = actualTable;
+        this.actualRestaurantTable = actualRestaurantTable;
     }
 
     public int getPlanificationId() {
@@ -41,11 +41,11 @@ public class Planification {
         this.waiter = waiter;
     }
 
-    public Table getActualTable() {
-        return actualTable;
+    public RestaurantTable getActualTable() {
+        return actualRestaurantTable;
     }
 
-    public void setActualTable(Table actualTable) {
-        this.actualTable = actualTable;
+    public void setActualTable(RestaurantTable actualRestaurantTable) {
+        this.actualRestaurantTable = actualRestaurantTable;
     }
 }

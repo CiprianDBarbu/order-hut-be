@@ -22,19 +22,19 @@ public class Dish {
     private String dishDescription;
 
     @ManyToMany(mappedBy = "dishList")
-    private List<Order> orderList = new ArrayList<>();
+    private List<FinalOrder> finalOrderList = new ArrayList<>();
 
     public Dish() {
     }
 
-    public Dish(int dishId, String dishName, float price, String category, String imageUrl, String dishDescription, List<Order> orderList) {
+    public Dish(int dishId, String dishName, float price, String category, String imageUrl, String dishDescription, List<FinalOrder> finalOrderList) {
         this.dishId = dishId;
         this.dishName = dishName;
         this.price = price;
         this.category = category;
         this.imageUrl = imageUrl;
         this.dishDescription = dishDescription;
-        this.orderList = orderList;
+        this.finalOrderList = finalOrderList;
     }
 
     public int getDishId() {
@@ -85,11 +85,11 @@ public class Dish {
         this.dishDescription = dishDescription;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<FinalOrder> getOrderList() {
+        return finalOrderList;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
+    public void setOrderList(List<FinalOrder> finalOrderList) {
+        this.finalOrderList = finalOrderList;
     }
 }

@@ -1,5 +1,6 @@
 package com.cbar.orderhutbe.service;
 
+import com.cbar.orderhutbe.exceptions.NoElementFoundException;
 import com.cbar.orderhutbe.model.Planification;
 import com.cbar.orderhutbe.repository.PlanificationRepository;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,15 @@ public class PlanificationService {
     public String deletePlanificationById(int planificationId) {
         planificationRepository.deleteById(planificationId);
         return "OK";
+    }
+
+    public Planification editPlanification(int planificationId, Planification planification) {
+        Planification actualPlanification = planificationRepository.findById(planificationId)
+                .orElseThrow(() -> new NoElementFoundException("Id not available!"));
+
+        actualPlanification.setActualTable(planification.getActualTable());
+        actualPlanification.setWaiter(planification.getWaiter());
+
+        return planificationRepository.save(actualPlanification);
     }
 }

@@ -9,21 +9,21 @@ public class OrderHutBeApplication {
 
     private final ClientRepository clientRepository;
     private final DishRepository dishRepository;
-    private final OrderRepository orderRepository;
+    private final FinalOrderRepository finalOrderRepository;
     private final PlanificationRepository planificationRepository;
-    private final TableRepository tableRepository;
+    private final RestaurantTableRepository restaurantTableRepository;
     private final WaiterRepository waiterRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(OrderHutBeApplication.class, args);
     }
 
-    public OrderHutBeApplication(ClientRepository clientRepository, DishRepository dishRepository, OrderRepository orderRepository, PlanificationRepository planificationRepository, TableRepository tableRepository, WaiterRepository waiterRepository) {
+    public OrderHutBeApplication(ClientRepository clientRepository, DishRepository dishRepository, FinalOrderRepository finalOrderRepository, PlanificationRepository planificationRepository, RestaurantTableRepository restaurantTableRepository, WaiterRepository waiterRepository) {
         this.clientRepository = clientRepository;
         this.dishRepository = dishRepository;
-        this.orderRepository = orderRepository;
+        this.finalOrderRepository = finalOrderRepository;
         this.planificationRepository = planificationRepository;
-        this.tableRepository = tableRepository;
+        this.restaurantTableRepository = restaurantTableRepository;
         this.waiterRepository = waiterRepository;
     }
 }

@@ -1,18 +1,22 @@
 package com.cbar.orderhutbe.model;
 
+import com.cbar.orderhutbe.serializer.CustomDishSerializer;
+import com.cbar.orderhutbe.serializer.CustomOrderSerializer;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-enum OrderStatus {
-    WAITING,
-    IN_PROGRESS,
-    DONE
-}
-
 @Entity
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "orderId")
 public class FinalOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,20 +40,24 @@ public class FinalOrder {
 
     @ManyToMany
     @JoinTable(name = "dish_order", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "dish_id"))
+    @JsonSerialize(using = CustomDishSerializer.class)
     private List<Dish> dishList = new ArrayList<>();
 
     public FinalOrder() {
     }
 
-    public FinalOrder(int orderId, float totalPrice, Date orderTime, OrderStatus orderStatus, String comments, Client orderClient, Planification planification, List<Dish> dishList) {
+    public FinalOrder(int orderId, Date orderTime, OrderStatus orderStatus, String comments, Client orderClient, Planification planification, List<Dish> dishList) {
         this.orderId = orderId;
-        this.totalPrice = totalPrice;
         this.orderTime = orderTime;
         this.orderStatus = orderStatus;
         this.comments = comments;
         this.orderClient = orderClient;
         this.planification = planification;
         this.dishList = dishList;
+        this.totalPrice = 0;
+        for (Dish dish : dishList) {
+            this.totalPrice += dish.getPrice();
+        }
     }
 
     public int getOrderId() {

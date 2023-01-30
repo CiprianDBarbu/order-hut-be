@@ -1,5 +1,6 @@
 package com.cbar.orderhutbe.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Waiter {
     private String fullName;
 
     @OneToMany(mappedBy = "waiter")
+    @JsonIgnore
     private List<Planification> planifications = new ArrayList<>();
 
     public Waiter() {
@@ -24,6 +26,11 @@ public class Waiter {
         this.waiterId = waiterId;
         this.fullName = fullName;
         this.planifications = planifications;
+    }
+
+    public Waiter(int waiterId, String fullName) {
+        this.waiterId = waiterId;
+        this.fullName = fullName;
     }
 
     public int getWaiterId() {

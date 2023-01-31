@@ -23,6 +23,12 @@ public class FinalOrderController {
                 .body(orderService.retrieveOrders());
     }
 
+    @GetMapping("/{orderId}")
+    public ResponseEntity<FinalOrder> retrieveOrderById(@PathVariable int orderId) {
+        return ResponseEntity.ok()
+                .body(orderService.retrieveOrderById(orderId));
+    }
+
     @PostMapping("/new")
     public ResponseEntity<FinalOrder> saveNewOrder(@RequestBody FinalOrder order) {
         return ResponseEntity.created(URI.create("/order" + order.getOrderId()))

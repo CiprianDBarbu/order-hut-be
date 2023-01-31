@@ -23,6 +23,11 @@ public class WaiterService {
         return waiterRepository.findAll();
     }
 
+    public Waiter retrieveWaiterById(int waiterId) {
+        return waiterRepository.findById(waiterId)
+                .orElseThrow(() -> new NoElementFoundException("Id not available!"));
+    }
+
     public String deleteWaiterById(int waiterId) {
         waiterRepository.deleteById(waiterId);
         return "OK";

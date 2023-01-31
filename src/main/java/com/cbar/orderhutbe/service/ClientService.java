@@ -23,6 +23,11 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
+    public Client retrieveClientById(int clientId) {
+        return clientRepository.findById(clientId)
+                .orElseThrow(() -> new NoElementFoundException("Id not available!"));
+    }
+
     public String deleteClientById(int clientId) {
         clientRepository.deleteById(clientId);
         return "OK";

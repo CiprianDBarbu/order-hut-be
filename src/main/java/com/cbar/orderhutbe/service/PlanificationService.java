@@ -23,6 +23,11 @@ public class PlanificationService {
         return planificationRepository.findAll();
     }
 
+    public Planification retrievePlanificationById(int planificationId) {
+        return planificationRepository.findById(planificationId)
+                .orElseThrow(() -> new NoElementFoundException("Id not available!"));
+    }
+
     public String deletePlanificationById(int planificationId) {
         planificationRepository.deleteById(planificationId);
         return "OK";

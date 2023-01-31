@@ -23,13 +23,19 @@ public class RestaurantTableController {
                 .body(tableService.retrieveTables());
     }
 
+    @GetMapping("/{tableId}")
+    public ResponseEntity<RestaurantTable> retrieveTableById(@PathVariable int tableId) {
+        return ResponseEntity.ok()
+                .body(tableService.retrieveTableById(tableId));
+    }
+
     @PostMapping("/new")
     public ResponseEntity<RestaurantTable> saveNewTable(@RequestBody RestaurantTable table) {
         return ResponseEntity.created(URI.create("/table" + table.getTableId()))
                 .body(tableService.saveNewTable(table));
     }
 
-    @PutMapping("/{talbeId}")
+    @PutMapping("/{tableId}")
     public ResponseEntity<RestaurantTable> editTable(@PathVariable int tableId,
                                                      @RequestBody RestaurantTable table) {
         return ResponseEntity.created(URI.create("/table" + tableId))

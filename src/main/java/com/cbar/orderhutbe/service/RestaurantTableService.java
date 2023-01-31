@@ -23,6 +23,11 @@ public class RestaurantTableService {
         return restaurantTableRepository.findAll();
     }
 
+    public RestaurantTable retrieveTableById(int tableId) {
+        return restaurantTableRepository.findById(tableId)
+                .orElseThrow(() -> new NoElementFoundException("Id not available!"));
+    }
+
     public String deleteTableById(int tableId) {
         restaurantTableRepository.deleteById(tableId);
         return "OK";

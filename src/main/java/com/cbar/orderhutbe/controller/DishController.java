@@ -23,6 +23,12 @@ public class DishController {
                 .body(dishService.retrieveDishes());
     }
 
+    @GetMapping("/{dishId}")
+    public ResponseEntity<Dish> retrieveDishById(@PathVariable int dishId) {
+        return ResponseEntity.ok()
+                .body(dishService.retrieveDishById(dishId));
+    }
+
     @PostMapping("/new")
     public ResponseEntity<Dish> saveNewDish(@RequestBody Dish dish) {
         return ResponseEntity.created(URI.create("/dish" + dish.getDishId()))

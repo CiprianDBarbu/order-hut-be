@@ -23,22 +23,27 @@ public class DishService {
         return dishRepository.findAll();
     }
 
+    public Dish retrieveDishById(int dishId) {
+        return dishRepository.findById(dishId)
+                .orElseThrow(() -> new NoElementFoundException("Id not available!"));
+    }
+
     public String deleteDishById(int dishId) {
         dishRepository.deleteById(dishId);
         return "OK";
     }
 
     public Dish editDish(int dishId, Dish dish) {
-        Dish acutalDish = dishRepository.findById(dishId)
+        Dish actualDish = dishRepository.findById(dishId)
                 .orElseThrow(() -> new NoElementFoundException("Id not available!"));
 
-        acutalDish.setDishName(dish.getDishName());
-        acutalDish.setPrice(dish.getPrice());
-        acutalDish.setCategory(dish.getCategory());
-        acutalDish.setImageUrl(dish.getImageUrl());
-        acutalDish.setDishDescription(dish.getDishDescription());
-        acutalDish.setOrderList(dish.getOrderList());
+        actualDish.setDishName(dish.getDishName());
+        actualDish.setPrice(dish.getPrice());
+        actualDish.setCategory(dish.getCategory());
+        actualDish.setImageUrl(dish.getImageUrl());
+        actualDish.setDishDescription(dish.getDishDescription());
+        actualDish.setOrderList(dish.getOrderList());
 
-        return dishRepository.save(acutalDish);
+        return dishRepository.save(actualDish);
     }
 }

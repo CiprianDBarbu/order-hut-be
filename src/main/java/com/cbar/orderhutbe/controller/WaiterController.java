@@ -23,6 +23,12 @@ public class WaiterController {
                 .body(waiterService.retrieveWaiters());
     }
 
+    @GetMapping("/{waiterId}")
+    public ResponseEntity<Waiter> retrieveWaiterById(@PathVariable int waiterId) {
+        return ResponseEntity.ok()
+                .body(waiterService.retrieveWaiterById(waiterId));
+    }
+
     @PostMapping("/new")
     public ResponseEntity<Waiter> saveNewWaiter(@RequestBody Waiter waiter) {
         return ResponseEntity.created(URI.create("/waiter" + waiter.getWaiterId()))

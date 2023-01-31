@@ -23,6 +23,12 @@ public class ClientController {
                 .body(clientService.retrieveClients());
     }
 
+    @GetMapping("/{clientId}")
+    public ResponseEntity<Client> retrieveClientById(@PathVariable int clientId) {
+        return ResponseEntity.ok()
+                .body(clientService.retrieveClientById(clientId));
+    }
+
     @PostMapping("/new")
     public ResponseEntity<Client> saveNewClient(@RequestBody Client client) {
         return ResponseEntity.created(URI.create("client" + client.getClientId()))

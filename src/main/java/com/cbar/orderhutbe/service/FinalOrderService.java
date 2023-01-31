@@ -23,6 +23,11 @@ public class FinalOrderService {
         return finalOrderRepository.findAll();
     }
 
+    public FinalOrder retrieveOrderById(int orderId) {
+        return finalOrderRepository.findById(orderId)
+                .orElseThrow(() -> new NoElementFoundException("Id not available!"));
+    }
+
     public String deleteOrderById(int orderId) {
         finalOrderRepository.deleteById(orderId);
         return "OK";

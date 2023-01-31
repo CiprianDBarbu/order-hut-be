@@ -23,6 +23,12 @@ public class PlanificationController {
                 .body(planificationService.retrievePlanifications());
     }
 
+    @GetMapping("/{planificationId}")
+    public ResponseEntity<Planification> retrievePlanificationById(@PathVariable int planificationId) {
+        return ResponseEntity.ok()
+                .body(planificationService.retrievePlanificationById(planificationId));
+    }
+
     @PostMapping("/new")
     public ResponseEntity<Planification> saveNewPlanification(@RequestBody Planification planification) {
         return ResponseEntity.created(URI.create("/planification" + planification.getPlanificationId()))

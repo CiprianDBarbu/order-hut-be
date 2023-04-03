@@ -5,6 +5,7 @@ import com.cbar.orderhutbe.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -18,14 +19,16 @@ public class OrderHutBeApplication implements CommandLineRunner {
     private final PlanificationRepository planificationRepository;
     private final RestaurantTableRepository restaurantTableRepository;
     private final WaiterRepository waiterRepository;
+    private final UserRepository userRepository;
 
-    public OrderHutBeApplication(ClientRepository clientRepository, DishRepository dishRepository, FinalOrderRepository finalOrderRepository, PlanificationRepository planificationRepository, RestaurantTableRepository restaurantTableRepository, WaiterRepository waiterRepository) {
+    public OrderHutBeApplication(ClientRepository clientRepository, DishRepository dishRepository, FinalOrderRepository finalOrderRepository, PlanificationRepository planificationRepository, RestaurantTableRepository restaurantTableRepository, WaiterRepository waiterRepository, UserRepository userRepository) {
         this.clientRepository = clientRepository;
         this.dishRepository = dishRepository;
         this.finalOrderRepository = finalOrderRepository;
         this.planificationRepository = planificationRepository;
         this.restaurantTableRepository = restaurantTableRepository;
         this.waiterRepository = waiterRepository;
+        this.userRepository = userRepository;
     }
 
     public static void main(String[] args) {
@@ -100,5 +103,9 @@ public class OrderHutBeApplication implements CommandLineRunner {
 
         finalOrderRepository.save(order1);
         finalOrderRepository.save(order2);
+
+        //Adds users
+//        userRepository.save(new User(1, "admin", new BCryptPasswordEncoder().encode("admin"), "admin"));
+//        userRepository.save(new User(2, "waiter", new BCryptPasswordEncoder().encode("waiter"), "waiter"));
     }
 }

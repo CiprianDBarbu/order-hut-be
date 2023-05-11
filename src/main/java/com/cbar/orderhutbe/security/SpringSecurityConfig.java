@@ -40,13 +40,13 @@ public class SpringSecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/user/login").permitAll()
-                .requestMatchers("/client/new").permitAll()
-                .requestMatchers("/order/new").permitAll()
-                .requestMatchers("/planification/list").permitAll()
+                .requestMatchers("/client/**").permitAll()
+                .requestMatchers("/order/**").permitAll()
+                .requestMatchers("/planification/**").permitAll()
                 .requestMatchers("/table").permitAll()
                 .requestMatchers("/waiter").permitAll()
                 .requestMatchers("/menu").permitAll()
-                .requestMatchers("/dish/list").permitAll()
+                .requestMatchers("/dish/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated();
 //        http
